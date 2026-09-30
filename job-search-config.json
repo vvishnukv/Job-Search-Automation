@@ -1,0 +1,43 @@
+{
+  "search": {
+    "location": "New York, USA",
+    "sites": ["linkedin", "indeed"],
+    "maxResults": 25,
+    "isRemote": true,
+    "hoursOld": 168,
+    "linkedinFetchDescription": true,
+    "descriptionFormat": "markdown",
+    "enforceAnnualSalary": true,
+    "actor": "openclawai/job-board-scraper"
+  },
+  "thresholds": {
+    "autoApply": 85,
+    "manualReview": 70,
+    "autoReject": 0
+  },
+  "tracks": {
+    "LMS Administrator": {
+      "keywords": ["Brightspace", "Sakai", "Liferay CMS", "LMS", "Learning Management System", "WCAG 2.2", "WCAG 2.1", "accessibility", "faculty support", "Jira", "Power Apps", "Power Automate", "Team Dynamix", "course migration", "LMS QA testing"],
+      "priority": 1
+    },
+    "Web Accessibility Specialist": {
+      "keywords": ["WCAG 2.2", "WCAG 2.1", "accessibility auditing", "QA", "testing", "error pipelines", "AI detectability", "Jira", "Power Apps", "Power Automate", "LMS accessibility"],
+      "priority": 2
+    },
+    "Full Stack Developer": {
+      "keywords": ["Liferay CMS", "Node.js", "Express", "MongoDB", "PostgreSQL", "REST APIs", "Docker", "JavaScript", "SQL", "HTML", "Flutter", "Dart", "web development", "full stack"],
+      "priority": 3
+    },
+    "Flutter / Mobile Developer": {
+      "keywords": ["Flutter", "Dart", "Firebase", "FCM", "SQLite", "mobile app", "cross-platform", "Realtor+", "LinkNews", "Personal Diary", "mobile development", "iOS", "Android"],
+      "priority": 4
+    }
+  },
+  "resumeConstraints": {
+    "maristUniversityBullets": 4,
+    "forgeAlumnusBullets": 3,
+    "projects": 2,
+    "projectBullets": 2,
+    "leadershipBullets": 2
+  }
+}
