@@ -1,10 +1,11 @@
 {
   "search": {
-    "location": "New York, USA",
+    "location": "United States",
     "sites": ["linkedin", "indeed"],
     "maxResults": 25,
     "isRemote": true,
     "hoursOld": 168,
+    "timeRange": "7days",         // "today" | "7days" | "30days"
     "linkedinFetchDescription": true,
     "descriptionFormat": "markdown",
     "enforceAnnualSalary": true,

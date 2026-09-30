@@ -1,0 +1,106 @@
+{
+  "personal": {
+    "name": "Vishnu Kaushik Varma Vuddaraju",
+    "location": "Poughkeepsie, New York, United States",
+    "email": "vishnukaushikvarma@gmail.com",
+    "phone": "(551) 297-5781",
+    "linkedin": "https://linkedin.com/in/vishnukaushikvarma",
+    "portfolio": "https://vishnukaushikvarma.vercel.app/"
+  },
+  "education": [
+    {
+      "institution": "Marist University",
+      "degree": "Master of Science, Information Systems",
+      "period": "Jan 2025 - Dec 2026",
+      "gpa": "3.845"
+    },
+    {
+      "institution": "Keshav Memorial Institute Of Technology",
+      "degree": "Bachelor of Technology, Computer Science & Machine Learning (CSM)",
+      "period": "Aug 2020 - May 2024",
+      "gpa": "3.5"
+    }
+  ],
+  "workExperience": [
+    {
+      "company": "Marist University",
+      "title": "Web Developer & LMS QA Tester",
+      "department": "Digital Education",
+      "period": "Apr 2025 - Present",
+      "bullets": [
+        "Redeveloped 150+ academic and departmental web pages in Liferay CMS with responsive design, SEO optimization, and WCAG 2.2 accessibility compliance",
+        "Resolved 100+ complex Jira tickets, cutting ticket resolution time by 50% and boosting response rates by 30%",
+        "Audited 5,000+ Brightspace courses for WCAG 2.2 compliance using Power Apps and Power Automate workflow, automating issue reporting to faculty",
+        "Assisted faculty across every department with Brightspace LMS and accessibility through hybrid/live sessions and resolved 200+ support requests through the Team Dynamix ticketing system",
+        "Manually migrated 500+ courses from Sakai to Brightspace and helped lecturers understand everything about the Brightspace setup",
+        "Partnered with other colleagues to build a tracking pipeline with Power Apps and Excel to parse system errors, eliminating 10+ hours of manual follow-up weekly",
+        "Co-led Bright Foxes outreach campaign delivering 15+ faculty support sessions and resolving 50+ system inquiries",
+        "Documented Minutes of Meetings (MoMs) for Digital Education projects, ensuring clear communication of action items among technical and academic stakeholders",
+        "Conducted functional, regression, and cross-browser QA testing to ensure LMS and CMS accessibility and quality compliance",
+        "Tested Sakai tools rigorously, helping out with quality assurance testing and creating detailed tickets for the Sakai team to resolve bugs",
+        "Volunteered and supported the Hudson Valley Artificial Intelligence & Cloud Summit hosted at Marist University, engaging with industry and academic leaders on responsible AI innovation",
+        "Tested and evaluated generative AI tools (ChatGPT, Microsoft Copilot) regarding AI-generated content detectability against Copyleaks and Turnitin, co-authoring comprehensive institutional guidelines, optimal prompt engineering frameworks, and documentation deployed across Brightspace LMS"
+      ]
+    },
+    {
+      "company": "Forge Alumnus",
+      "title": "Application Developer & Team Lead",
+      "department": "Engineering",
+      "period": "Sep 2023 - Mar 2024",
+      "location": "Hyderabad, India",
+      "bullets": [
+        "Engineered and launched Realtor+, a full-scale real estate mobile platform for a USA (New Jersey) client in just 45 days, supporting 10,000+ active users, 100+ real estate agents, and 3 distinct user profiles across Android and iOS platforms",
+        "Released major feature updates for the enterprise mobile application on the Apple App Store and Google Play Store, driving a 60% increase in total application downloads while managing Apple Analytics and Google Analytics",
+        "Architected the Forge HRMS application for automated daily employee check-in and check-out tracking utilizing real-time GPS coordinates and location validation",
+        "Delivered the fully functional Forge Inspira event platform in just 30 days for a 2024 conference, executing rigorous QA testing across 3 user profiles and QR-based event registration tracking",
+        "Directed a 20-member technical development team, hosting 5+ onboarding sessions, authoring 15+ pages of Standard Operating Procedures, and serving as head of volunteers and technical hackathon instructor"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "LMS Accessibility & Student Success Analysis",
+      "description": "Processed 10,000+ student LMS records using Python and PostgreSQL inside Docker to evaluate WCAG 2.1 accessibility compliance. Uncovered critical academic performance metrics and built interactive Tableau Public dashboards.",
+      "techStack": ["Python", "PostgreSQL", "Tableau", "Docker", "Pandas"]
+    },
+    {
+      "name": "Containerized Research Data Pipeline",
+      "description": "Engineered an automated research workflow deployed on a GCP Ubuntu Linux virtual machine utilizing Docker for absolute environment isolation. Processed multi-subject research simulations and generated statistical aggregates via Pandas and NumPy.",
+      "techStack": ["Docker", "GCP", "Python", "Pandas", "NumPy"]
+    },
+    {
+      "name": "AI-Powered Voice Music Assistant",
+      "description": "Built a full-stack voice-activated virtual assistant leveraging Node.js, Express, and MongoDB Atlas to manage and query song directories. Processed speech-to-text voice prompts through OpenAI's API to intelligently parse requests and trigger local computer audio playback.",
+      "techStack": ["Node.js", "Express", "MongoDB", "OpenAI API", "Speech-to-Text"]
+    },
+    {
+      "name": "LinkNews Mobile App",
+      "description": "Developed a cross-platform news mobile application using Flutter and Dart. Integrated asynchronous JSON REST API data pipelines via HTTP, HTML parsing utilities, and Firebase Cloud Messaging (FCM) with local notifications for real-time user engagement.",
+      "techStack": ["Flutter", "Dart", "GetX", "Firebase FCM", "REST APIs"]
+    },
+    {
+      "name": "Personal Diary App",
+      "description": "Built a full-featured personal diary mobile application using Flutter and Dart. Integrated Provider state management, SQLite/Shared Preferences for persistent local data storage, and dynamic light/dark theme switching.",
+      "techStack": ["Flutter", "Dart", "Provider", "SQLite", "Shared Preferences"]
+    },
+    {
+      "name": "Flutter SQLite & API Integration App",
+      "description": "Developed a Flutter mobile utility to fetch remote data from JSONPlaceholder APIs, cache and manage records securely using local SQLite databases ('sqflite'), and render dynamic floating lists with stylized components based on the fetched data.",
+      "techStack": ["Flutter", "Dart", "SQLite", "REST API", "HTTP"]
+    }
+  ],
+  "technicalSkills": {
+    "languagesFrameworks": ["Python", "SQL", "JavaScript", "Dart", "HTML", "Flutter", "Node.js", "Express", "Provider", "GetX"],
+    "dataAiAutomation": ["Pandas", "NumPy", "Tableau", "OpenAI API", "Speech-to-Text", "REST APIs", "JSON Parsing", "Prompt Engineering"],
+    "databasesCloud": ["PostgreSQL", "MongoDB Atlas", "SQLite", "Google Cloud Platform (GCP)", "Firebase", "Firebase FCM"],
+    "devopsTools": ["Docker", "Power Apps", "Power Automate", "Liferay CMS", "Brightspace", "Sakai", "Git", "GitHub", "Jira", "Team Dynamix"]
+  },
+  "leadershipSkills": [
+    "Communication & Storytelling: Presented the Sakai→Brightspace migration plan to 15+ faculty members; authored clear technical docs for 50+ support-request resolutions",
+    "Collaboration & Networking: Co-led Bright Foxes outreach: 15+ faculty sessions and 50+ system inquiries resolved alongside cross-functional colleagues",
+    "Adaptability & Resilience: Pivoted Forge Inspira event platform from in-person to QR-based registration in 30 days amid shifting requirements",
+    "Leadership & Team Management: Directed a 20-member dev team; hosted 5+ onboarding sessions; authored 15+ pages of SOPs; served as hackathon instructor",
+    "Problem Solving & Analytical Thinking: Cut Jira ticket resolution time by 50% and boosted response rates by 30% across 100+ complex tickets",
+    "Emotional Intelligence & Empathy: Assisted faculty across every department with Brightspace LMS through hybrid/live sessions, resolving 200+ support requests"
+  ]
+}
