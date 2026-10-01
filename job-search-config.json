@@ -1,11 +1,14 @@
 {
   "search": {
     "location": "United States",
-    "sites": ["linkedin", "indeed"],
+    "sites": [
+      "linkedin",
+      "indeed"
+    ],
     "maxResults": 25,
     "isRemote": true,
     "hoursOld": 168,
-    "timeRange": "7days",         // "today" | "7days" | "30days"
+    "timeRange": "7days",
     "linkedinFetchDescription": true,
     "descriptionFormat": "markdown",
     "enforceAnnualSalary": true,
@@ -18,19 +21,76 @@
   },
   "tracks": {
     "LMS Administrator": {
-      "keywords": ["Brightspace", "Sakai", "Liferay CMS", "LMS", "Learning Management System", "WCAG 2.2", "WCAG 2.1", "accessibility", "faculty support", "Jira", "Power Apps", "Power Automate", "Team Dynamix", "course migration", "LMS QA testing"],
+      "keywords": [
+        "Brightspace",
+        "Sakai",
+        "Liferay CMS",
+        "LMS",
+        "Learning Management System",
+        "WCAG 2.2",
+        "WCAG 2.1",
+        "accessibility",
+        "faculty support",
+        "Jira",
+        "Power Apps",
+        "Power Automate",
+        "Team Dynamix",
+        "course migration",
+        "LMS QA testing"
+      ],
       "priority": 1
     },
     "Web Accessibility Specialist": {
-      "keywords": ["WCAG 2.2", "WCAG 2.1", "accessibility auditing", "QA", "testing", "error pipelines", "AI detectability", "Jira", "Power Apps", "Power Automate", "LMS accessibility"],
+      "keywords": [
+        "WCAG 2.2",
+        "WCAG 2.1",
+        "accessibility auditing",
+        "QA",
+        "testing",
+        "error pipelines",
+        "AI detectability",
+        "Jira",
+        "Power Apps",
+        "Power Automate",
+        "LMS accessibility"
+      ],
       "priority": 2
     },
     "Full Stack Developer": {
-      "keywords": ["Liferay CMS", "Node.js", "Express", "MongoDB", "PostgreSQL", "REST APIs", "Docker", "JavaScript", "SQL", "HTML", "Flutter", "Dart", "web development", "full stack"],
+      "keywords": [
+        "Liferay CMS",
+        "Node.js",
+        "Express",
+        "MongoDB",
+        "PostgreSQL",
+        "REST APIs",
+        "Docker",
+        "JavaScript",
+        "SQL",
+        "HTML",
+        "Flutter",
+        "Dart",
+        "web development",
+        "full stack"
+      ],
       "priority": 3
     },
     "Flutter / Mobile Developer": {
-      "keywords": ["Flutter", "Dart", "Firebase", "FCM", "SQLite", "mobile app", "cross-platform", "Realtor+", "LinkNews", "Personal Diary", "mobile development", "iOS", "Android"],
+      "keywords": [
+        "Flutter",
+        "Dart",
+        "Firebase",
+        "FCM",
+        "SQLite",
+        "mobile app",
+        "cross-platform",
+        "Realtor+",
+        "LinkNews",
+        "Personal Diary",
+        "mobile development",
+        "iOS",
+        "Android"
+      ],
       "priority": 4
     }
   },

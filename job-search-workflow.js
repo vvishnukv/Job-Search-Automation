@@ -11,8 +11,39 @@
  *   ./run-job-search.sh dashboard --timeRange today
  */
 
-const fs = require('fs');
-const path = require('path');
+export const meta = {
+  name: 'job-search-dashboard',
+  description: 'Dashboard for finding latest jobs, calculating fit scores, and applying with single click',
+  phases: [
+    { title: 'Configure', detail: 'Select time range (today/7days/30days) and location' },
+    { title: 'Discover', detail: 'Search job boards for jobs matching your resume keywords' },
+    { title: 'Evaluate', detail: 'Calculate fit scores against master resume data' },
+    { title: 'Dashboard', detail: 'Display all jobs with fit scores and action buttons' },
+    { title: 'Apply', detail: 'Single-click apply with tailored resume generation' },
+  ],
+};
+
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+// ─── Workflow runtime support ────────────────────────────────────────────────
+// The Claude Code Workflow environment provides log, phase, and agent functions.
+// For standalone execution, we provide fallbacks.
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const log = (...args) => console.log(...args);
+
+const phase = (name) => console.log(`\n=== Phase: ${name} ===`);
+
+const agent = (prompt, opts) => {
+  // In Claude Code, this runs an agent. For standalone, we return null.
+  // The caller should handle null results gracefully.
+  return Promise.resolve(null);
+};
 
 // ─── Configuration ───────────────────────────────────────────────────────────
 
@@ -303,18 +334,6 @@ function renderJobDetail(job) {
 
 // ─── Workflow ─────────────────────────────────────────────────────────────────
 
-export const meta = {
-  name: 'job-search-dashboard',
-  description: 'Dashboard for finding latest jobs, calculating fit scores, and applying with single click',
-  phases: [
-    { title: 'Configure', detail: 'Select time range (today/7days/30days) and location' },
-    { title: 'Discover', detail: 'Search job boards for jobs matching your resume keywords' },
-    { title: 'Evaluate', detail: 'Calculate fit scores against master resume data' },
-    { title: 'Dashboard', detail: 'Display all jobs with fit scores and action buttons' },
-    { title: 'Apply', detail: 'Single-click apply with tailored resume generation' },
-  ],
-};
-
 async function runDashboardWorkflow() {
   log('🚀 Starting Job Search Automation Dashboard');
   log(`  Portfolio: ${MASTER_RESUME.personal.portfolio}`);
@@ -365,48 +384,81 @@ async function runDashboardWorkflow() {
   // ─── Phase 4: Dashboard ───
   phase('Dashboard');
 
-  renderDashboard(evaluatedJobs, 0, '🔍 JOB SEARCH DASHBOARD');
+  // Interactive dashboard loop
+  let selectedIndex = 0;
+  let running = true;
 
-  // ─── Phase 5: Interactive Apply ───
-  log('\n=== Dashboard Mode ===');
-  log('Select jobs to apply (enter numbers separated by commas, or "auto" for all fit >= 85%):');
-  log('Type "detail <num>" to see job details, or "quit" to exit.\n');
+  while (running) {
+    renderDashboard(evaluatedJobs, selectedIndex, '🔍 JOB SEARCH DASHBOARD');
 
-  const autoApplyJobs = evaluatedJobs.filter(j => j._fit.fitScore >= 85);
-  const manualReviewJobs = evaluatedJobs.filter(j => j._fit.fitScore >= 70 && j._fit.fitScore < 85);
-  const rejectedJobs = evaluatedJobs.filter(j => j._fit.fitScore < 70);
+    // In a real implementation, we would wait for user input here
+    // For now, we'll simulate the interaction by processing auto-apply
+    // and providing instructions for manual interaction
 
-  log(`\n📊 SUMMARY:` +
-    `\n  🟢 Auto-apply (${autoApplyJobs.length}):  Fit ≥ 85%` +
-    `\n  🟡 Manual review (${manualReviewJobs.length}):  Fit 70-84%` +
-    `\n  🔴 Auto-rejected (${rejectedJobs.length}):  Fit < 70%`);
+    log('\n=== DASHBOARD READY ===');
+    log('Instructions:');
+    log('  • Jobs are sorted by fit score (highest first)');
+    log('  • Fit scores: 🟢 ≥85% (Auto-apply) | 🟡 70-84% (Review) | 🔴 <70% (Skip)');
+    log('  • To view details: In Claude Code, you would type: detail <number>');
+    log('  • To apply to all ≥85%: type: auto');
+    log('  • To apply to specific jobs: type: apply <comma-separated numbers>');
+    log('  • To quit: type: quit\n');
 
-  // Single-click apply to all auto-apply candidates
-  log('\n🚀 Single-Click Apply: Generating tailored resumes for all auto-apply candidates...\n');
+    // Process auto-apply for all ≥85% fits (single-click apply feature)
+    const autoApplyJobs = evaluatedJobs.filter(j => j._fit.fitScore >= 85);
+    const manualReviewJobs = evaluatedJobs.filter(j => j._fit.fitScore >= 70 && j._fit.fitScore < 85);
+    const rejectedJobs = evaluatedJobs.filter(j => j._fit.fitScore < 70);
 
-  const generatedResumes = [];
-  for (const job of autoApplyJobs) {
-    log(`  → Generating resume for: ${job.title} @ ${job.company} (Fit: ${job._fit.fitScore}%)`);
-    const resume = generateTailoredResume(job, job._fit);
-    generatedResumes.push({
-      job: { title: job.title, company: job.company },
-      fitScore: job._fit.fitScore,
-      category: job._fit.category,
-      resume
-    });
-    log(`     ✅ Resume generated (${resume.length} chars)`);
+    log(`📊 SUMMARY:` +
+      `\n  🟢 Auto-apply (${autoApplyJobs.length}):  Fit ≥ 85%` +
+      `\n  🟡 Manual review (${manualReviewJobs.length}):  Fit 70-84%` +
+      `\n  🔴 Auto-rejected (${rejectedJobs.length}):  Fit < 70%`);
+
+    if (autoApplyJobs.length > 0) {
+      log('\n🚀 Single-Click Apply: Generating tailored resumes for all auto-apply candidates...\n');
+
+      const generatedResumes = [];
+      for (const job of autoApplyJobs) {
+        log(`  → Generating resume for: ${job.title} @ ${job.company} (Fit: ${job._fit.fitScore}%)`);
+        const resume = generateTailoredResume(job, job._fit);
+        generatedResumes.push({
+          job: { title: job.title, company: job.company },
+          fitScore: job._fit.fitScore,
+          category: job._fit.category,
+          resume
+        });
+        log(`     ✅ Resume generated (${resume.length} chars)`);
+      }
+
+      // Save resumes to disk
+      const outputDir = path.join(__dirname, 'output');
+      fs.mkdirSync(outputDir, { recursive: true });
+
+      generatedResumes.forEach((item, idx) => {
+        const filename = `${item.category.replace(/\s/g, '_')}_${item.job.company.replace(/\s/g, '_')}_${Date.now()}.md`;
+        const filepath = path.join(outputDir, filename);
+        fs.writeFileSync(filepath, item.resume);
+        log(`     💾 Saved: output/${filename}`);
+      });
+
+      log(`\n✅ Generated ${generatedResumes.length} tailored resumes for auto-apply candidates`);
+      log(`📁 Resumes saved to: ${outputDir}\n`);
+    } else {
+      log('\n✅ No auto-apply candidates found (no jobs with fit score ≥85%)');
+    }
+
+    // For demonstration, we'll break after one iteration
+    // In a real interactive version, this would wait for user input
+    log('\n💡 To make this fully interactive:');
+    log('   1. The dashboard would wait for your input after rendering');
+    log('   2. You could type numbers to select jobs');
+    log('   3. Type "detail <num>" to see full job description');
+    log('   4. Type "apply <nums>" to apply to specific jobs');
+    log('   5. Type "auto" to apply all ≥85% fits');
+    log('   6. Type "quit" to exit\n');
+
+    running = false; // Exit after one cycle for now
   }
-
-  // Save resumes to disk
-  const outputDir = path.join(__dirname, 'output');
-  fs.mkdirSync(outputDir, { recursive: true });
-
-  generatedResumes.forEach((item, idx) => {
-    const filename = `${item.category.replace(/\s/g, '_')}_${item.job.company.replace(/\s/g, '_')}_${Date.now()}.md`;
-    const filepath = path.join(outputDir, filename);
-    fs.writeFileSync(filepath, item.resume);
-    log(`     💾 Saved: output/${filename}`);
-  });
 
   // Return structured results
   return {
@@ -416,13 +468,18 @@ async function runDashboardWorkflow() {
       autoApply: autoApplyJobs.length,
       manualReview: manualReviewJobs.length,
       autoRejected: rejectedJobs.length,
-      resumesGenerated: generatedResumes.length
+      resumesGenerated: autoApplyJobs.length // Only counting auto-applied for now
     },
     autoApplyJobs,
     manualReviewJobs,
     autoRejectedJobs,
-    generatedResumes,
-    outputDir
+    generatedResumes: autoApplyJobs.map(job => ({
+      job: { title: job.title, company: job.company },
+      fitScore: job._fit.fitScore,
+      category: job._fit.category,
+      resume: generateTailoredResume(job, job._fit)
+    })),
+    outputDir: path.join(__dirname, 'output')
   };
 }
 
